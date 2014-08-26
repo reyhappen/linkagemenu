@@ -3,7 +3,7 @@ $.extend({
         var set = $.extend({
             'target':['J_grade','J_subject','J_version','J_book'], //需要做联动处理的元素id
             'url':['test/grade.php','test/subject.php','test/version.php','test/book.php'], //每项查询的url
-            'defValues':[],
+            'defValues':[], //第一次加载完后设置的默认值
             'relate':['J_relate1','J_relate2']||'', //可以为字符串或元素id组成的数组，默认不设置时是前面每项select拼接的查询字符串
             'type':'get', //ajax请求的方式get, post
             'load1st':true, //是否自动加载第一个，设置为false时可以直接将第一项固定下来不需要ajax请求一遍
@@ -107,7 +107,7 @@ $.extend({
 								*确保每一项的id都有值，便于后台数据处理
 								* 如果后台输出的数据为[[id,name],[123,'语文']]这种形式的话
 								* 后台就会有更大的灵活性，他们不需要考虑key值是什么，
-								* 只要按键,值对的循序输出就行
+								* 只要按键,值对的顺序输出就行
 								*/
 								if(D[i].id === '') continue;
 								el.add((new Option(D[i].name, D[i].id)), el.options.length);
@@ -115,9 +115,9 @@ $.extend({
 							//添加完option之后的回调
 							var afAdd = afterAdd[oi];
 							if(afAdd){
-								afAdd.apply(el, [D, els, oi]);
-							}else if(typeof beforeAdd == 'function'){
-								afterAdd.apply(el, [D, els, oi]);
+								afAdd.apply(el, [D, els, oi, setDef]);
+							}else if(typeof afterAdd == 'function'){
+								afterAdd.apply(el, [D, els, oi, setDef]);
 							}
 							if(setDef){
 								//设置默认值
