@@ -209,10 +209,10 @@ $.extend({
 });
 $.linkage({
 	target: ['J_grade','J_subject','J_version','J_book']
-	,url: ['test/grade.php','test/subject1.php','test/version.php','test/book.php']
+	,url: ['test/grade.json','test/subject.json','test/version.json','test/book.json']
 	,relate: 'a=2&b=m'
 	,load1st: false
-	,defValues: [1,1,11,11]
+	,defValues: [1,1,1,1]
 	/*,error:function(els, oi, XMLHttpRequest, textStatus, errorThrown){
 		alert('不好意思，发生了错误！')
 		console.log(els, oi, XMLHttpRequest, textStatus, errorThrown);

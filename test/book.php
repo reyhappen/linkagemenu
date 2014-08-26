@@ -1,9 +1,4 @@
 <?php
 sleep(2);
-@$name = urldecode($_GET['subject']);
-$arr=array();
-	for($i=1;$i<101;$i++){
-		array_push($arr, array('id'=>$i, 'name'=>$name.$i."册"));
-	}
-	echo json_encode($arr);
+echo json_encode(array(array('id'=>'1','name'=>'上册'),array('id'=>'2','name'=>'下册'),array('id'=>'3','name'=>'全册')));
 ?>
