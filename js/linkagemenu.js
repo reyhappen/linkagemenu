@@ -24,7 +24,7 @@ $.extend({
         	relEls = [], //存放关联元素
         	change = set.change, //当值被手动修改后的回调，可为函数组成的数组或者函数
         	cache = set.cahce,
-        	load1st = defValues.length ? true : set.load1st,
+        	load1st = set.load1st,
         	error = set.error,
         	callback = set.callback,
         	beforeAdd = set.beforeAdd,
@@ -127,9 +127,9 @@ $.extend({
 								//设置默认值后的回调
 								var afsetV = afterSetVal[oi];
 								if(afsetV){
-									afsetV.apply(el, [D, els, v, oi]);
+									afsetV.apply(el, [D, els, v, oi-1]);
 								}else if(typeof afterSetVal == 'function'){
-									afterSetVal.apply(el, [D, els, v, oi]);
+									afterSetVal.apply(el, [D, els, v, oi-1]);
 								}
 							}
 						}
@@ -160,6 +160,19 @@ $.extend({
 				loadData(0, true);
         	}else
         		loadData(0);
+        }else{
+        	if(defValues.length>0){
+        		var v = defValues[0], el = els[0];
+				el.value = v;
+				loadData(1, true);
+				//设置默认值后的回调
+				var afsetV = afterSetVal[0];
+				if(afsetV){
+					afsetV.apply(el, [undefined, els, v, 0]);
+				}else if(typeof afterSetVal == 'function'){
+					afterSetVal.apply(el, [undefined, els, v, 0]);
+				}
+        	}
         }
     }
 });
