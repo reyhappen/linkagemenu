@@ -43,7 +43,7 @@ body{font-size:12px;}
 .uiselect .selheader *{vertical-align:top;}
 .uiselect .selheader a{position:absolute;right:6px;top:50%;margin-top:-2px;_margin-top:-4px;}
 .uiselect .selheader, .uiselect .selheader .ellipsis{cursor:pointer;}
-.uiselect .selheader .ellipsis{width:100%;}
+.uiselect .selheader .ellipsis{width:100%;_padding-top:2px;}
 .uiselect .selbody{position:absolute;left:-1px;top:21px;border:1px solid #ccc;width:100%;box-shadow:0 3px 3px rgba(0,0,0,.1);background:#fff;_padding:3px;visibility:hidden;}
 .showoptions .selbody{visibility:visible;}
 .uiselect .selbody p{margin:3px;_margin:0 0 3px;border:1px solid #999;}
@@ -52,7 +52,7 @@ body{font-size:12px;}
 .uiselect .selbody a:hover, .uiselect .selbody a.selected{color:#fff;background:#0099ff;text-decoration:none;}
 .uiselect .selbody a.disabled{color:graytext;}
 .uiselect .selbody a:hover{background:#0099dd;}
-.uiselect .searchbar input{width:100%;border:0;height:22px;}
+.uiselect .searchbar input{width:100%;border:0;height:22px;line-height:22px;}
 </style>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 </head>
@@ -623,19 +623,25 @@ $.fn.uiselect = function(opts){
     		$optioni.removeClass("showoptions");
     	});
     	var searchopt = selectwrap.find("input:text"), options = selectwrap[0], options = options.lastElementChild ? options.lastElementChild.lastElementChild.getElementsByTagName("a") : options.lastChild.lastChild.getElementsByTagName("a");
-    	searchopt.on("keyup",function(e){
-    		var v = $.trim(this.value);
-    		for(var i=0,il=options.length;i<il;i++){
-    			var opt = options[i];
-    			if(opt.innerText.indexOf(v)>-1 || opt.getAttribute('value').indexOf(v)>-1){
-    				opt.style.display = 'block';
-    			}else{
-    				opt.style.display = 'none';
-    			}
-    		}
-    	});
+    	if('placeholder' in document.createElement("INPUT")){
+    		searchopt.on("input",function(e){
+	    		var v = $.trim(this.value);
+	    		for(var i=0,il=options.length;i<il;i++){
+	    			var opt = options[i];
+	    			if(opt.innerText.indexOf(v)>-1 || opt.getAttribute('value').indexOf(v)>-1){
+	    				opt.style.display = 'block';
+	    			}else{
+	    				opt.style.display = 'none';
+	    			}
+	    		}
+	    	});
+    	}else{
+    		searchopt[0].attachEvent("onpropertychange",function(){
+    			
+    		})
+    	}
     });
-    $(document).on("click",function(){
+    $(document).on("click.uiselect",function(){
     	$this.removeClass("showoptions");
     });
     return this;
@@ -686,7 +692,7 @@ $(".uiselect").uiselect();
 </div>
 <script type="text/javascript" src="js/linkagemenu.js"></script>
 <script>
-/*$.linkage({
+$.linkage({
 	target: ['J_grade','J_subject','J_version','J_book']
 	,url: ['test/grade.json','test/subject.json','test/version.json','test/book.json']
 	,relate: 'a=2&b=m'
@@ -727,7 +733,7 @@ $(".uiselect").uiselect();
 		if(window.console)
 			console.log('afterSetVal', D, this, els, v, i);
     }
-});*/
+});
 </script>
 </body>
 </html>
