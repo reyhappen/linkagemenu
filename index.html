@@ -34,49 +34,53 @@ body{font-size:12px;}
 .posrl0t0, .posrr0t0, .posrr0b0, .posrl0b0{position:relative;}
 .posal0t0, .posar0t0, .posar0b0, .posal0b0{position:absolute;}
 
-.canhover{_unicode-bidi:expression(function(e){e.style.unicodeBidi='normal';if(!window.XMLHttpRequest){var h=e.getAttribute('hoverclass'),r=new RegExp('(\\\\s|^)'+h+'(\\\\s|$)');e.attachEvent("onmouseenter",function(){if(!r.test(e.className)){e.className+=" "+h}});e.attachEvent("onmouseleave",function(){e.className=e.className.replace(r,' ')})}}(this));}
+.canhover{_unicode-bidi:expression(function(e){e.style.unicodeBidi='normal';if(!window.XMLHttpRequest){var h=e.getAttribute('hoverclass'),r=new RegExp('(\\\\s*|^)'+h+'(\\\\s*|$)');e.attachEvent("onmouseenter",function(){if(!r.test(e.className)){e.className+=" "+h}});e.attachEvent("onmouseleave",function(){e.className=e.className.replace(r,' ')})}}(this));}
 
 
-.uiselect{display:inline-block;*display:inline;*zoom:1;border:1px solid #999;padding:3px;height:14px;width:200px;vertical-align:middle;position:relative;left:0;top:0;}
+.uiselect{display:inline-block;*display:inline;*zoom:1;border:1px solid #999;padding:3px;height:14px;width:200px;vertical-align:middle;position:relative;left:0;top:0;z-index:0;}
 .uiselect:hover, .selecthover{border-color:#666;}
 .uiselect .selheader{padding-right:20px;}
 .uiselect .selheader *{vertical-align:top;}
 .uiselect .selheader a{position:absolute;right:6px;top:50%;margin-top:-2px;_margin-top:-4px;}
 .uiselect .selheader, .uiselect .selheader .ellipsis{cursor:pointer;}
-.uiselect .selheader .ellipsis{width:100%;_padding-top:2px;}
+.uiselect .selheader .ellipsis{width:100%;_padding-top:2px;line-height:14px;}
 .uiselect .selbody{position:absolute;left:-1px;top:21px;border:1px solid #ccc;width:100%;box-shadow:0 3px 3px rgba(0,0,0,.1);background:#fff;_padding:3px;visibility:hidden;}
+.showoptions{z-index:1;}
 .showoptions .selbody{visibility:visible;}
 .uiselect .selbody p{margin:3px;_margin:0 0 3px;border:1px solid #999;}
 .uiselect .selbody .options{max-height:200px;_height:200px;overflow-y:auto;}
 .uiselect .selbody a{display:block;padding:2px 3px;_padding:2px 0;text-decoration:none;color:#000;}
+.uiselect .selbody a.focused{color:#fff;background:#0066ff;}
 .uiselect .selbody a:hover, .uiselect .selbody a.selected{color:#fff;background:#0099ff;text-decoration:none;}
-.uiselect .selbody a.disabled{color:graytext;}
+.uiselect .selbody a.disabled, .uiselect .selbody a[disabled], .uiselect .selbody a[disabled]:hover{color:graytext;background:#fff;cursor:default;}
 .uiselect .selbody a:hover{background:#0099dd;}
 .uiselect .searchbar input{width:100%;border:0;height:22px;line-height:22px;}
+.uiselect .searchbar input::-ms-clear{display:none;}
+*.disabled{filter:alpha(opacity=50);opacity:.5;cursor:not-allowed;}
+*.disabled .selheader, *.disabled .selheader a, *.disabled .selheader .ellipsis{cursor:not-allowed;}
 </style>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 </head>
 
 <body>
 
-<div style="padding:20px;margin-bottom:300px;">
-	<div class="uiselect canhover" hoverclass="selecthover">
+<div style="padding:20px;margin-bottom:10px;">
+	<div class="uiselect canhover disabled" hoverclass="selecthover">
 		<div class="selheader posrl0t0"><input name="select1" type="hidden" value="" /><div class="ellipsis" title="选中项">选中项</div><a class="arrow_down arrow_black arrow4" href="javascript:;"></a></div>
-		<div></div>
 		<div class="selbody">
 			<p class="searchbar"><input type="text" /></p>
 			<div class="options">
-				<a href="javascript:;" value="" hidefocus="true" class="selected">选中项</a>
-				<a href="javascript:;" value="1" hidefocus="true">1对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="2" hidefocus="true">2对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="3" hidefocus="true">3对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="4" hidefocus="true">4对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="5" hidefocus="true">5对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="6" hidefocus="true">6对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="7" hidefocus="true">7对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="8" hidefocus="true">8对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="91" hidefocus="true">9对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="10" hidefocus="true">10对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="" tabindex="-1" class="selected">选中项</a>
+				<a href="javascript:;" value="1" tabindex="-1">1对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="2" tabindex="-1" disabled="disabled">2对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="3" tabindex="-1">3对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="4" tabindex="-1">4对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="5" tabindex="-1">5对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="6" tabindex="-1">6对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="7" tabindex="-1">7对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="8" tabindex="-1">8对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="91" tabindex="-1">9对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="10" tabindex="-1">10对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
 			</div>
 		</div>
 	</div><span>可能的提示文字！</span>
@@ -88,507 +92,107 @@ body{font-size:12px;}
 		<div class="selbody">
 			<p class="searchbar"><input type="text" /></p>
 			<div class="options">
-				<a href="javascript:;" value="" hidefocus="true" class="selected">选中项</a>
-				<a href="javascript:;" value="1" hidefocus="true">1对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="2" hidefocus="true">2对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="3" hidefocus="true">3对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="4" hidefocus="true">4对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="5" hidefocus="true">5对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="6" hidefocus="true">6对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="7" hidefocus="true">7对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="8" hidefocus="true">8对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="9" hidefocus="true">9对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="10" hidefocus="true">10对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="11" hidefocus="true">11对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="12" hidefocus="true">12对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="13" hidefocus="true">13对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="14" hidefocus="true">14对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="15" hidefocus="true">15对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="16" hidefocus="true">16对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="17" hidefocus="true">17对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="18" hidefocus="true">18对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="19" hidefocus="true">19对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="20" hidefocus="true">20对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="21" hidefocus="true">21对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="22" hidefocus="true">22对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="23" hidefocus="true">23对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="24" hidefocus="true">24对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="25" hidefocus="true">25对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="26" hidefocus="true">26对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="27" hidefocus="true">27对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="28" hidefocus="true">28对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="29" hidefocus="true">29对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="30" hidefocus="true">30对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="31" hidefocus="true">31对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="32" hidefocus="true">32对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="33" hidefocus="true">33对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="34" hidefocus="true">34对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="35" hidefocus="true">35对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="36" hidefocus="true">36对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="37" hidefocus="true">37对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="38" hidefocus="true">38对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="39" hidefocus="true">39对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="40" hidefocus="true">40对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="41" hidefocus="true">41对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="42" hidefocus="true">42对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="43" hidefocus="true">43对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="44" hidefocus="true">44对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="45" hidefocus="true">45对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="46" hidefocus="true">46对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="47" hidefocus="true">47对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="48" hidefocus="true">48对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="49" hidefocus="true">49对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="50" hidefocus="true">50对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="51" hidefocus="true">51对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="52" hidefocus="true">52对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="53" hidefocus="true">53对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="54" hidefocus="true">54对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="55" hidefocus="true">55对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="56" hidefocus="true">56对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="57" hidefocus="true">57对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="58" hidefocus="true">58对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="59" hidefocus="true">59对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="60" hidefocus="true">60对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="61" hidefocus="true">61对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="62" hidefocus="true">62对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="63" hidefocus="true">63对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="64" hidefocus="true">64对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="65" hidefocus="true">65对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="66" hidefocus="true">66对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="67" hidefocus="true">67对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="68" hidefocus="true">68对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="69" hidefocus="true">69对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="70" hidefocus="true">70对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="71" hidefocus="true">71对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="72" hidefocus="true">72对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="73" hidefocus="true">73对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="74" hidefocus="true">74对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="75" hidefocus="true">75对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="76" hidefocus="true">76对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="77" hidefocus="true">77对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="78" hidefocus="true">78对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="79" hidefocus="true">79对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="80" hidefocus="true">80对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="81" hidefocus="true">81对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="82" hidefocus="true">82对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="83" hidefocus="true">83对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="84" hidefocus="true">84对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="85" hidefocus="true">85对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="86" hidefocus="true">86对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="87" hidefocus="true">87对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="88" hidefocus="true">88对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="89" hidefocus="true">89对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="90" hidefocus="true">90对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="91" hidefocus="true">91对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="92" hidefocus="true">92对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="93" hidefocus="true">93对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="94" hidefocus="true">94对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="95" hidefocus="true">95对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="96" hidefocus="true">96对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="97" hidefocus="true">97对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="98" hidefocus="true">98对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="99" hidefocus="true">99对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="100" hidefocus="true">100对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="101" hidefocus="true">101对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="102" hidefocus="true">102对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="103" hidefocus="true">103对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="104" hidefocus="true">104对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="105" hidefocus="true">105对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="106" hidefocus="true">106对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="107" hidefocus="true">107对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="108" hidefocus="true">108对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="109" hidefocus="true">109对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="110" hidefocus="true">110对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="111" hidefocus="true">111对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="112" hidefocus="true">112对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="113" hidefocus="true">113对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="114" hidefocus="true">114对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="115" hidefocus="true">115对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="116" hidefocus="true">116对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="117" hidefocus="true">117对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="118" hidefocus="true">118对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="119" hidefocus="true">119对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="120" hidefocus="true">120对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="121" hidefocus="true">121对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="122" hidefocus="true">122对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="123" hidefocus="true">123对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="124" hidefocus="true">124对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="125" hidefocus="true">125对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="126" hidefocus="true">126对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="127" hidefocus="true">127对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="128" hidefocus="true">128对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="129" hidefocus="true">129对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="130" hidefocus="true">130对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="131" hidefocus="true">131对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="132" hidefocus="true">132对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="133" hidefocus="true">133对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="134" hidefocus="true">134对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="135" hidefocus="true">135对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="136" hidefocus="true">136对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="137" hidefocus="true">137对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="138" hidefocus="true">138对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="139" hidefocus="true">139对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="140" hidefocus="true">140对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="141" hidefocus="true">141对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="142" hidefocus="true">142对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="143" hidefocus="true">143对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="144" hidefocus="true">144对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="145" hidefocus="true">145对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="146" hidefocus="true">146对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="147" hidefocus="true">147对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="148" hidefocus="true">148对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="149" hidefocus="true">149对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="150" hidefocus="true">150对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="151" hidefocus="true">151对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="152" hidefocus="true">152对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="153" hidefocus="true">153对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="154" hidefocus="true">154对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="155" hidefocus="true">155对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="156" hidefocus="true">156对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="157" hidefocus="true">157对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="158" hidefocus="true">158对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="159" hidefocus="true">159对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="160" hidefocus="true">160对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="161" hidefocus="true">161对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="162" hidefocus="true">162对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="163" hidefocus="true">163对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="164" hidefocus="true">164对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="165" hidefocus="true">165对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="166" hidefocus="true">166对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="167" hidefocus="true">167对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="168" hidefocus="true">168对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="169" hidefocus="true">169对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="170" hidefocus="true">170对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="171" hidefocus="true">171对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="172" hidefocus="true">172对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="173" hidefocus="true">173对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="174" hidefocus="true">174对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="175" hidefocus="true">175对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="176" hidefocus="true">176对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="177" hidefocus="true">177对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="178" hidefocus="true">178对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="179" hidefocus="true">179对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="180" hidefocus="true">180对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="181" hidefocus="true">181对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="182" hidefocus="true">182对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="183" hidefocus="true">183对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="184" hidefocus="true">184对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="185" hidefocus="true">185对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="186" hidefocus="true">186对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="187" hidefocus="true">187对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="188" hidefocus="true">188对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="189" hidefocus="true">189对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="190" hidefocus="true">190对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="191" hidefocus="true">191对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="192" hidefocus="true">192对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="193" hidefocus="true">193对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="194" hidefocus="true">194对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="195" hidefocus="true">195对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="196" hidefocus="true">196对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="197" hidefocus="true">197对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="198" hidefocus="true">198对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="199" hidefocus="true">199对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="200" hidefocus="true">200对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="201" hidefocus="true">201对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="202" hidefocus="true">202对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="203" hidefocus="true">203对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="204" hidefocus="true">204对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="205" hidefocus="true">205对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="206" hidefocus="true">206对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="207" hidefocus="true">207对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="208" hidefocus="true">208对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="209" hidefocus="true">209对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="210" hidefocus="true">210对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="211" hidefocus="true">211对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="212" hidefocus="true">212对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="213" hidefocus="true">213对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="214" hidefocus="true">214对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="215" hidefocus="true">215对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="216" hidefocus="true">216对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="217" hidefocus="true">217对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="218" hidefocus="true">218对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="219" hidefocus="true">219对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="220" hidefocus="true">220对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="221" hidefocus="true">221对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="222" hidefocus="true">222对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="223" hidefocus="true">223对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="224" hidefocus="true">224对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="225" hidefocus="true">225对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="226" hidefocus="true">226对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="227" hidefocus="true">227对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="228" hidefocus="true">228对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="229" hidefocus="true">229对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="230" hidefocus="true">230对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="231" hidefocus="true">231对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="232" hidefocus="true">232对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="233" hidefocus="true">233对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="234" hidefocus="true">234对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="235" hidefocus="true">235对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="236" hidefocus="true">236对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="237" hidefocus="true">237对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="238" hidefocus="true">238对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="239" hidefocus="true">239对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="240" hidefocus="true">240对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="241" hidefocus="true">241对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="242" hidefocus="true">242对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="243" hidefocus="true">243对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="244" hidefocus="true">244对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="245" hidefocus="true">245对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="246" hidefocus="true">246对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="247" hidefocus="true">247对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="248" hidefocus="true">248对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="249" hidefocus="true">249对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="250" hidefocus="true">250对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="251" hidefocus="true">251对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="252" hidefocus="true">252对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="253" hidefocus="true">253对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="254" hidefocus="true">254对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="255" hidefocus="true">255对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="256" hidefocus="true">256对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="257" hidefocus="true">257对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="258" hidefocus="true">258对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="259" hidefocus="true">259对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="260" hidefocus="true">260对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="261" hidefocus="true">261对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="262" hidefocus="true">262对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="263" hidefocus="true">263对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="264" hidefocus="true">264对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="265" hidefocus="true">265对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="266" hidefocus="true">266对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="267" hidefocus="true">267对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="268" hidefocus="true">268对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="269" hidefocus="true">269对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="270" hidefocus="true">270对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="271" hidefocus="true">271对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="272" hidefocus="true">272对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="273" hidefocus="true">273对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="274" hidefocus="true">274对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="275" hidefocus="true">275对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="276" hidefocus="true">276对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="277" hidefocus="true">277对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="278" hidefocus="true">278对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="279" hidefocus="true">279对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="280" hidefocus="true">280对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="281" hidefocus="true">281对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="282" hidefocus="true">282对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="283" hidefocus="true">283对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="284" hidefocus="true">284对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="285" hidefocus="true">285对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="286" hidefocus="true">286对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="287" hidefocus="true">287对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="288" hidefocus="true">288对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="289" hidefocus="true">289对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="290" hidefocus="true">290对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="291" hidefocus="true">291对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="292" hidefocus="true">292对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="293" hidefocus="true">293对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="294" hidefocus="true">294对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="295" hidefocus="true">295对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="296" hidefocus="true">296对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="297" hidefocus="true">297对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="298" hidefocus="true">298对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="299" hidefocus="true">299对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="300" hidefocus="true">300对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="301" hidefocus="true">301对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="302" hidefocus="true">302对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="303" hidefocus="true">303对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="304" hidefocus="true">304对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="305" hidefocus="true">305对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="306" hidefocus="true">306对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="307" hidefocus="true">307对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="308" hidefocus="true">308对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="309" hidefocus="true">309对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="310" hidefocus="true">310对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="311" hidefocus="true">311对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="312" hidefocus="true">312对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="313" hidefocus="true">313对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="314" hidefocus="true">314对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="315" hidefocus="true">315对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="316" hidefocus="true">316对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="317" hidefocus="true">317对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="318" hidefocus="true">318对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="319" hidefocus="true">319对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="320" hidefocus="true">320对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="321" hidefocus="true">321对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="322" hidefocus="true">322对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="323" hidefocus="true">323对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="324" hidefocus="true">324对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="325" hidefocus="true">325对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="326" hidefocus="true">326对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="327" hidefocus="true">327对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="328" hidefocus="true">328对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="329" hidefocus="true">329对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="330" hidefocus="true">330对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="331" hidefocus="true">331对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="332" hidefocus="true">332对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="333" hidefocus="true">333对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="334" hidefocus="true">334对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="335" hidefocus="true">335对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="336" hidefocus="true">336对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="337" hidefocus="true">337对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="338" hidefocus="true">338对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="339" hidefocus="true">339对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="340" hidefocus="true">340对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="341" hidefocus="true">341对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="342" hidefocus="true">342对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="343" hidefocus="true">343对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="344" hidefocus="true">344对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="345" hidefocus="true">345对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="346" hidefocus="true">346对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="347" hidefocus="true">347对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="348" hidefocus="true">348对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="349" hidefocus="true">349对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="350" hidefocus="true">350对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="351" hidefocus="true">351对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="352" hidefocus="true">352对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="353" hidefocus="true">353对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="354" hidefocus="true">354对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="355" hidefocus="true">355对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="356" hidefocus="true">356对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="357" hidefocus="true">357对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="358" hidefocus="true">358对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="359" hidefocus="true">359对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="360" hidefocus="true">360对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="361" hidefocus="true">361对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="362" hidefocus="true">362对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="363" hidefocus="true">363对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="364" hidefocus="true">364对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="365" hidefocus="true">365对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="366" hidefocus="true">366对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="367" hidefocus="true">367对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="368" hidefocus="true">368对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="369" hidefocus="true">369对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="370" hidefocus="true">370对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="371" hidefocus="true">371对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="372" hidefocus="true">372对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="373" hidefocus="true">373对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="374" hidefocus="true">374对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="375" hidefocus="true">375对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="376" hidefocus="true">376对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="377" hidefocus="true">377对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="378" hidefocus="true">378对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="379" hidefocus="true">379对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="380" hidefocus="true">380对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="381" hidefocus="true">381对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="382" hidefocus="true">382对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="383" hidefocus="true">383对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="384" hidefocus="true">384对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="385" hidefocus="true">385对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="386" hidefocus="true">386对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="387" hidefocus="true">387对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="388" hidefocus="true">388对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="389" hidefocus="true">389对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="390" hidefocus="true">390对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="391" hidefocus="true">391对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="392" hidefocus="true">392对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="393" hidefocus="true">393对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="394" hidefocus="true">394对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="395" hidefocus="true">395对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="396" hidefocus="true">396对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="397" hidefocus="true">397对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="398" hidefocus="true">398对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="399" hidefocus="true">399对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="400" hidefocus="true">400对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="401" hidefocus="true">401对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="402" hidefocus="true">402对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="403" hidefocus="true">403对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="404" hidefocus="true">404对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="405" hidefocus="true">405对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="406" hidefocus="true">406对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="407" hidefocus="true">407对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="408" hidefocus="true">408对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="409" hidefocus="true">409对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="410" hidefocus="true">410对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="411" hidefocus="true">411对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="412" hidefocus="true">412对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="413" hidefocus="true">413对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="414" hidefocus="true">414对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="415" hidefocus="true">415对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="416" hidefocus="true">416对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="417" hidefocus="true">417对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="418" hidefocus="true">418对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="419" hidefocus="true">419对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="420" hidefocus="true">420对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="421" hidefocus="true">421对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="422" hidefocus="true">422对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="423" hidefocus="true">423对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="424" hidefocus="true">424对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="425" hidefocus="true">425对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="426" hidefocus="true">426对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="427" hidefocus="true">427对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="428" hidefocus="true">428对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="429" hidefocus="true">429对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="430" hidefocus="true">430对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="431" hidefocus="true">431对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="432" hidefocus="true">432对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="433" hidefocus="true">433对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="434" hidefocus="true">434对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="435" hidefocus="true">435对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="436" hidefocus="true">436对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="437" hidefocus="true">437对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="438" hidefocus="true">438对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="439" hidefocus="true">439对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="440" hidefocus="true">440对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="441" hidefocus="true">441对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="442" hidefocus="true">442对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="443" hidefocus="true">443对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="444" hidefocus="true">444对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="445" hidefocus="true">445对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="446" hidefocus="true">446对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="447" hidefocus="true">447对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="448" hidefocus="true">448对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="449" hidefocus="true">449对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="450" hidefocus="true">450对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="451" hidefocus="true">451对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="452" hidefocus="true">452对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="453" hidefocus="true">453对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="454" hidefocus="true">454对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="455" hidefocus="true">455对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="456" hidefocus="true">456对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="457" hidefocus="true">457对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="458" hidefocus="true">458对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="459" hidefocus="true">459对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="460" hidefocus="true">460对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="461" hidefocus="true">461对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="462" hidefocus="true">462对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="463" hidefocus="true">463对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="464" hidefocus="true">464对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="465" hidefocus="true">465对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="466" hidefocus="true">466对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="467" hidefocus="true">467对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="468" hidefocus="true">468对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="469" hidefocus="true">469对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="470" hidefocus="true">470对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="471" hidefocus="true">471对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="472" hidefocus="true">472对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="473" hidefocus="true">473对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="474" hidefocus="true">474对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="475" hidefocus="true">475对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="476" hidefocus="true">476对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="477" hidefocus="true">477对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="478" hidefocus="true">478对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="479" hidefocus="true">479对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="480" hidefocus="true">480对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="481" hidefocus="true">481对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="482" hidefocus="true">482对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="483" hidefocus="true">483对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="484" hidefocus="true">484对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="485" hidefocus="true">485对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="486" hidefocus="true">486对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="487" hidefocus="true">487对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="488" hidefocus="true">488对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="489" hidefocus="true">489对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="490" hidefocus="true">490对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="491" hidefocus="true">491对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="492" hidefocus="true">492对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="493" hidefocus="true">493对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="494" hidefocus="true">494对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="495" hidefocus="true">495对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="496" hidefocus="true">496对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="497" hidefocus="true">497对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="498" hidefocus="true">498对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="499" hidefocus="true">499对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
-				<a href="javascript:;" value="500" hidefocus="true">500对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="" tabindex="-1" class="selected">选中项</a>
+				<a href="javascript:;" value="1" tabindex="-1" disabled="disabled">1对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="2" tabindex="-1">2对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="3" tabindex="-1">3对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="4" tabindex="-1">4对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="5" tabindex="-1">5对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="6" tabindex="-1">6对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="7" tabindex="-1">7对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="8" tabindex="-1">8对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="9" tabindex="-1">9对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="10" tabindex="-1">10对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="11" tabindex="-1">11对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="12" tabindex="-1">12对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="13" tabindex="-1">13对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="14" tabindex="-1">14对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="15" tabindex="-1">15对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="16" tabindex="-1">16对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="17" tabindex="-1">17对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="18" tabindex="-1">18对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="19" tabindex="-1">19对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="20" tabindex="-1">20对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="21" tabindex="-1">21对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="22" tabindex="-1">22对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="23" tabindex="-1">23对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="24" tabindex="-1">24对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="25" tabindex="-1">25对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="26" tabindex="-1">26对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="27" tabindex="-1">27对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="28" tabindex="-1">28对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="29" tabindex="-1">29对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="30" tabindex="-1">30对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="31" tabindex="-1">31对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="32" tabindex="-1">32对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="33" tabindex="-1">33对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="34" tabindex="-1">34对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="35" tabindex="-1">35对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="36" tabindex="-1">36对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="37" tabindex="-1">37对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="38" tabindex="-1">38对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="39" tabindex="-1">39对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="40" tabindex="-1">40对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="41" tabindex="-1">41对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="42" tabindex="-1">42对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="43" tabindex="-1">43对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="44" tabindex="-1">44对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="45" tabindex="-1">45对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="46" tabindex="-1">46对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="47" tabindex="-1">47对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="48" tabindex="-1">48对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="49" tabindex="-1">49对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="50" tabindex="-1">50对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="51" tabindex="-1">51对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="52" tabindex="-1">52对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="53" tabindex="-1">53对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="54" tabindex="-1">54对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="55" tabindex="-1">55对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="56" tabindex="-1">56对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="57" tabindex="-1">57对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="58" tabindex="-1">58对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="59" tabindex="-1">59对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="60" tabindex="-1">60对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="61" tabindex="-1">61对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="62" tabindex="-1">62对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="63" tabindex="-1">63对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="64" tabindex="-1">64对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="65" tabindex="-1">65对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="66" tabindex="-1">66对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="67" tabindex="-1">67对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="68" tabindex="-1">68对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="69" tabindex="-1">69对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="70" tabindex="-1">70对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="71" tabindex="-1">71对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="72" tabindex="-1">72对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="73" tabindex="-1">73对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="74" tabindex="-1">74对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="75" tabindex="-1">75对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="76" tabindex="-1">76对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="77" tabindex="-1">77对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="78" tabindex="-1">78对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="79" tabindex="-1">79对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="80" tabindex="-1">80对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="81" tabindex="-1">81对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="82" tabindex="-1">82对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="83" tabindex="-1">83对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="84" tabindex="-1">84对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="85" tabindex="-1">85对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="86" tabindex="-1">86对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="87" tabindex="-1">87对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="88" tabindex="-1">88对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="89" tabindex="-1">89对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="90" tabindex="-1">90对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="91" tabindex="-1">91对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="92" tabindex="-1">92对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="93" tabindex="-1">93对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="94" tabindex="-1">94对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="95" tabindex="-1">95对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="96" tabindex="-1">96对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="97" tabindex="-1">97对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="98" tabindex="-1">98对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="99" tabindex="-1">99对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
+				<a href="javascript:;" value="100" tabindex="-1">100对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长对不起我很长</a>
 			</div>
 		</div>
 	</div><span>可能的提示文字！</span>
@@ -596,144 +200,130 @@ body{font-size:12px;}
 
 <!--IE6下500条数据效率还行，1000条数据时搜索有点卡-->
 <script type="text/javascript" charset="utf-8">
+(function($){
+//$.fn.extend({
+//	"uiselect": function(opts){
+//		
+//	},
+//	"setVal": function(v){
+//		
+//	}
+//});
 $.fn.uiselect = function(opts){
-    var $this = $(this).each(function(){
+    var $selecters = this, defaults = $.fn.uiselect.defaults;
+    this.each(function(){
     	var selectwrap = $(this),
-    		opttxt = selectwrap.children(":first").find("div"),
-    		inp = opttxt.prev();
+    		selectheader = selectwrap.children(":first"),
+    		selectbody = selectwrap.children(":last"),
+    		optswrap = selectbody.children(":last"),
+    		opts,
+    		opttxt = selectheader.find("div"), //文本显示区
+    		inp = opttxt.prev(); //选择框值区
     	
     	selectwrap.on("click",function(e){
-    		e.stopPropagation();
-    	}).on("click",".selheader",function(e){
     		e.preventDefault();
+    		if(selectwrap.hasClass("disabled") || selectwrap.hasClass("showoptions") || selectwrap.hasClass("J_loading")) return;
+    		defaults.activeEl = selectwrap;
+    		opts = optswrap[0].getElementsByTagName("a");
+    		selectwrap.addClass("showoptions");
+    		if($(e.target).hasClass('selheader') || $(e.target).parents('.selheader').length){
+    			optswrap.find(".selected").focus();
+    		}
+    		$(document).off('keyup').on('keyup', function(e){
+				switch(e.which){
+					case 40:
+						defaults.focusedopt.nextAll(":not([class*=disabled])").eq(0).focus();
+						break;
+					case 38:
+						defaults.focusedopt.prevAll(":not([class*=disabled])").eq(0).focus();
+						break;
+					case 13:{
+						selectwrap.removeClass("showoptions");
+						break;
+					}
+				}
+			});
+    	});
+		
+    	selectbody.on("click",function(e){
     		e.stopPropagation();
-    		var $selheader = $(this);
-    		if($selheader.hasClass("disabled")) return;
-    		selectwrap.toggleClass("showoptions");
-    		
-    	}).on("click",".options a",function(e){
+    	}).on("click", ".options a:not([disabled])",function(e){
     		e.preventDefault();
-    		e.stopPropagation();
-    		var $optioni = $(this), t = this.innerHTML;
-    		if($optioni.hasClass("disabled")) return;
-    		$optioni.addClass("selected").siblings().removeClass("selected");
-    		inp.val($optioni.attr("value"));
+    		var optioni = $(this), t = this.innerHTML;
+    		if(optioni.hasClass("disabled")) return;
+    		optioni.addClass("selected").siblings().removeClass("selected");
+    		inp.val(optioni.attr("value"));
     		opttxt.attr("title", t);
     		opttxt[0].innerHTML = t;
-    		$optioni.removeClass("showoptions");
+    		selectwrap.removeClass("showoptions");
+    		$(document).off("keyup");
+    	}).on('focusin',function(e){
+    		var t = e.target;
+    		if(t.tagName == 'A' && !t.getAttribute("disabled")){
+    			var $t = defaults.focusedopt = $(t).addClass('focused');
+    			$t.siblings().removeClass('focused');
+    		}
+    	}).on("mouseover", function(e){
+    		if(e.target.tagName == 'A'){
+    			$(this).find(".focused").blur().removeClass("focused");
+    		}
     	});
-    	var searchopt = selectwrap.find("input:text"), options = selectwrap[0], options = options.lastElementChild ? options.lastElementChild.lastElementChild.getElementsByTagName("a") : options.lastChild.lastChild.getElementsByTagName("a");
-    	if('placeholder' in document.createElement("INPUT")){
-    		searchopt.on("input",function(e){
-	    		var v = $.trim(this.value);
-	    		for(var i=0,il=options.length;i<il;i++){
-	    			var opt = options[i];
-	    			if(opt.innerText.indexOf(v)>-1 || opt.getAttribute('value').indexOf(v)>-1){
-	    				opt.style.display = 'block';
-	    			}else{
-	    				opt.style.display = 'none';
-	    			}
-	    		}
-	    	});
+    	
+    	var $searchinput = selectwrap.find("input:text").val(''), searchinput = $searchinput[0],
+    		search = function(e){
+    			var e = window.event || e;
+    			$.fn.uiselect.searching.apply(searchinput, [e, opts]);
+    		};
+    	if('placeholder' in searchinput){
+    		$searchinput.on("input", search);
     	}else{
-    		searchopt[0].attachEvent("onpropertychange",function(){
-    			
-    		})
+    		searchinput.attachEvent("onpropertychange", search);
+    		searchinput.attachEvent("onkeyup", search);
+    		if(window.addEventListener){
+    			searchinput.attachEvent("onfocus", function(){
+					//主要解决IE9中oncontextmenu delete or cut and backspace事件在onpropertychange时不响应
+					document.attachEvent("onselectionchange", search);
+				});
+				searchinput.attachEvent("onblur", function(){
+					document.detachEvent("onselectionchange", search);
+				});
+    		}
     	}
     });
     $(document).on("click.uiselect",function(){
-    	$this.removeClass("showoptions");
+    	$selecters.each(function(){
+    		var activeEl = defaults.activeEl;
+    		activeEl = activeEl && activeEl[0];
+    		if(activeEl == this) return true;
+    		$(this).removeClass("showoptions");
+    	});
+    	$.fn.uiselect.defaults.activeEl = null;
     });
     return this;
 }
-$(".uiselect").uiselect();
-</script>
 
-
-
-
-
-
-
-
-<div style="padding:20px;">
-    <span>
-        <span class="selected">学段</span>
-        <select name="grade" id="J_grade">
-            <option value="">学段</option>
-            <option value="1">小学</option>
-            <option value="2" disabled="disabled">初中</option>
-            <option value="3">高中</option>
-        </select>
-    </span>
-    <span>
-        <span class="selected">科目</span>
-        <select name="subject" id="J_subject">
-            <option value="">科目</option>
-        </select>
-    </span>
-</div>
-<div style="padding:20px;">
-    <!--select默认宽120，wide宽330-->
-    <span>
-        <span class="selected">版本</span>
-        <select name="version" id="J_version">
-            <option value="">版本</option>
-        </select>
-    </span>
-    <span>
-        <span class="selected">课本</span>
-        <select name="book" id="J_book">
-            <option value="">课本</option>
-        </select>
-    </span>
-    <input id="J_relate1" name="rel1" type="text" value="123" />
-    <input id="J_relate2" name="rel2" type="text" value="123" />
-</div>
-<script type="text/javascript" src="js/linkagemenu.js"></script>
-<script>
-$.linkage({
-	target: ['J_grade','J_subject','J_version','J_book']
-	,url: ['test/grade.json','test/subject.json','test/version.json','test/book.json']
-	,relate: 'a=2&b=m'
-	,load1st: false
-	,defValues: [1,1,1,1]
-	,error:function(els, oi, XMLHttpRequest, textStatus, errorThrown){
-		alert('不好意思，发生了错误！')
-		console.log(els, oi, XMLHttpRequest, textStatus, errorThrown);
+//设置默认属性，记录一些活动元素，加快运行效率
+$.fn.uiselect.defaults = {
+	'activeEl': null,
+	'focusedopt': null
+}
+//添加静态方法
+$.fn.uiselect.searching = function(e, options){
+	if(e.type == 'keyup' || e.type == 'input' || e.propertyName == "value" || (e.type == 'selectionchange' && document.activeElement == this)){
+		var v = $.trim(this.value);
+		for(var i=0,il=options.length;i<il;i++){
+			var opt = options[i];
+			if(opt.innerText.indexOf(v)>-1 || opt.getAttribute('value').indexOf(v)>-1){
+				opt.style.display = 'block';
+			}else{
+				opt.style.display = 'none';
+			}
+		}
 	}
-/*	,change:[function(els,i){
-		//数据加载前的回调
-		window.status = 'change'+','+i+','+this.id+','+els;
-		if(window.console)
-			console.log('change',this, els,i);
-    }]
-    ,callback:function(D, els, i){
-    	//比如实现当返回数据D为[]空数组时，隐藏后面几项选择菜单
-    	window.status = 'beforeAdd'+','+this+','+i+','+this.id+','+els+','+D;
-		if(window.console)
-			console.log('beforeAdd', D, this, els, i);
-    }*/ //callback会替代ajax返回数据后的操作并且不会执行beforeAdd和afterAdd以及设置默认值
-    ,beforeAdd:function(D, els, i){
-    	//比如实现当返回数据D为[]空数组时，隐藏后面几项选择菜单
-    	window.status = 'beforeAdd'+','+this+','+i+','+this.id+','+els+','+D;
-		if(window.console)
-			console.log('beforeAdd', D, this, els, i);
-    }
-    ,afterAdd:function(D, els, i, setDef){
-    	//D是ajax返回的数据，els是前面id对应的DOM元素数组，i为当前元素在数组中的索引，setDef判断是否是默认加载后需要设置默认值，如果提供了默认值则setDef为true
-    	//比如实现当返回数据D为[]空数组时，隐藏后面几项选择菜单，还可以实现选中默认项(老师所教年级与科目都可以设置已知的默认值，但版本科目不知时可以选择第一项作为默认值)
-    	window.status = 'afterAdd'+','+this+','+i+','+this.id+','+els+','+D;
-		if(window.console)
-			console.log('afterAdd', D, this, els, i);
-    }
-    ,afterSetVal:function(D, els, v, i){
-    	//比如实现当返回数据D为[]空数组时，隐藏后面几项选择菜单，还可以实现选中默认项(老师所教年级与科目都可以设置已知的默认值，但版本科目不知时可以选择第一项作为默认值)
-    	window.status = 'afterSetVal'+','+this+','+i+','+this.id+','+els+','+v+','+D;
-		if(window.console)
-			console.log('afterSetVal', D, this, els, v, i);
-    }
-});
+}
+})(jQuery);
+//实例化
+$(".uiselect").uiselect();
 </script>
 </body>
 </html>

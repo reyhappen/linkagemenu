@@ -52,6 +52,7 @@ $.extend({
             		for(var i=oi;iel=els[i];){
             			//还原后续select中option的默认文字并选中，当前加载的显示加载中
             			iel.length = 1;
+            			iel.options[0].value = '';
             			iel.options[0].text = prev.value === '' ? defaultOps[i] : (el === iel ? '\u52a0\u8f7d\u4e2d...' : defaultOps[i]);
             			i++;
             			iel.selectedIndex = 0;
@@ -86,61 +87,72 @@ $.extend({
 						}
 					},
 					success: function(D){
+						//D格式为[{id: "1", name: "人教版"}]
 						//还原第一个option的默认文字
             			el.options[0].text = defaultOps[oi];
             			var cback = callback[oi];
-						if(cback){
-							//自定义ajax返回数据处理函数
-							cback.apply(el, [D, els, oi]);
-						}else if(typeof callback == 'function'){
-							callback.apply(el, [D, els, oi]);
-						}else{
-							//自定义数据加载完后的回调与callback的区别是它执行后还会继续往select添加option
-							var bAdd = beforeAdd[oi];
-							if(bAdd){
-								bAdd.apply(el, [D, els, oi]);
-							}else if(typeof beforeAdd == 'function'){
-								beforeAdd.apply(el, [D, els, oi]);
-							}
-							for(var i=0, il=D.length; i<il; i++){
-								/*使用原生方法添加option比用jquery更快，jquery添加select在IE6下会有bug
-								*确保每一项的id都有值，便于后台数据处理
-								* 如果后台输出的数据为[[id,name],[123,'语文']]这种形式的话
-								* 后台就会有更大的灵活性，他们不需要考虑key值是什么，
-								* 只要按键,值对的顺序输出就行
-								*/
-								if(D[i].id === '') continue;
-								el.add((new Option(D[i].name, D[i].id)), el.options.length);
-							}
-							//添加完option之后的回调
-							var afAdd = afterAdd[oi];
-							if(afAdd){
-								afAdd.apply(el, [D, els, oi, setDef]);
-							}else if(typeof afterAdd == 'function'){
-								afterAdd.apply(el, [D, els, oi, setDef]);
-							}
-							if(setDef){
-								//设置默认值
-								var v = defValues[oi];
-								el.value = v;
-								loadData(++oi, true);
-								//设置默认值后的回调
-								var afsetV = afterSetVal[oi];
-								if(afsetV){
-									afsetV.apply(el, [D, els, v, oi-1]);
-								}else if(typeof afterSetVal == 'function'){
-									afterSetVal.apply(el, [D, els, v, oi-1]);
+            			if(D && $.isArray(D) && D.length){
+            				if(cback){
+								//自定义ajax返回数据处理函数
+								cback.apply(el, [D, els, oi]);
+							}else if(typeof callback == 'function'){
+								callback.apply(el, [D, els, oi]);
+							}else{
+								//自定义数据加载完后的回调与callback的区别是它执行后还会继续往select添加option
+								var bAdd = beforeAdd[oi];
+								if(bAdd){
+									bAdd.apply(el, [D, els, oi]);
+								}else if(typeof beforeAdd == 'function'){
+									beforeAdd.apply(el, [D, els, oi]);
+								}
+								for(var i=0, il=D.length; i<il; i++){
+									/*使用原生方法添加option比用jquery更快，jquery添加select在IE6下会有bug
+									*确保每一项的id都有值，便于后台数据处理
+									* 如果后台输出的数据为[[id,name],[123,'语文']]这种形式的话
+									* 后台就会有更大的灵活性，他们不需要考虑key名是什么，
+									* 只要按键,值对的顺序输出就行
+									*/
+									if(D[i].id === '') continue;
+									el.add((new Option(D[i].name, D[i].id)), el.options.length);
+								}
+								//添加完option之后的回调
+								var afAdd = afterAdd[oi];
+								if(afAdd){
+									afAdd.apply(el, [D, els, oi, setDef]);
+								}else if(typeof afterAdd == 'function'){
+									afterAdd.apply(el, [D, els, oi, setDef]);
+								}
+								if(setDef){
+									//设置默认值
+									var v = defValues[oi];
+									el.value = v;
+									console.log(el.id+'|'+v+'|')
+									loadData(++oi, true);
+									//设置默认值后的回调
+									var afsetV = afterSetVal[oi];
+									if(afsetV){
+										afsetV.apply(el, [D, els, v, oi-1]);
+									}else if(typeof afterSetVal == 'function'){
+										afterSetVal.apply(el, [D, els, v, oi-1]);
+									}
 								}
 							}
-						}
+            			}else{
+							var cerror = error[oi];
+            				if(cerror){
+								cerror.apply(el, [D, els, oi]);
+							}else if(typeof error == 'function'){
+								error.apply(el, [D, els, oi]);
+							}
+            			}
 					}
 				});
             };
         $(set.target).each(function(i) {
             var el = document.getElementById(this);
             els.push(el);
-            defaultOps.push(el.options[0].text);
-			$('#'+this).on('change',function(e){
+            defaultOps.push(el.getAttribute('title') || '\u8bf7\u9009\u62e9');
+			var $el = $('#'+this).on('change',function(e){
 				//查看是否有值被更改后的回调
 				var changefun = change[i];
 				if(changefun){
@@ -154,6 +166,14 @@ $.extend({
 					loadData(i+1);
 				}
 			});
+			/*i && $el.one('click',function(e){
+				if($el.data('loading')) return;
+				this.options[0].value
+				$el.data('loading', true);
+				if(i<len-1){
+					loadData(i+1, true);
+				}
+			});*/
         });
         if(load1st){
         	if(defValues.length>0){

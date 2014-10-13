@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>联动</title>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+</head>
+<body>
+<div style="padding:20px;">
+    <span>
+        <span class="selected">学段</span>
+        <select name="grade" id="J_grade" title="学段">
+            <option value="1">小学</option>
+            <option value="2" disabled="disabled">初中</option>
+            <option value="3">高中</option>
+        </select>
+    </span>
+    <span>
+        <span class="selected">科目</span>
+        <select name="subject" id="J_subject" title="科目"><option value="1">数学</option></select>
+    </span>
+</div>
+<div style="padding:20px;">
+    <!--select默认宽120，wide宽330-->
+    <span>
+        <span class="selected">版本</span>
+        <select name="version" id="J_version" title="版本"><option value="1">人教版</option></select>
+    </span>
+    <span>
+        <span class="selected">课本</span>
+        <select name="book" id="J_book" title="课本"><option value="1">上册</option></select>
+    </span>
+    <input id="J_relate1" name="rel1" type="text" value="123" />
+    <input id="J_relate2" name="rel2" type="text" value="123" />
+</div>
+<script type="text/javascript" src="js/linkagemenu.js"></script>
+<script>
+$.linkage({
+	target: ['J_grade','J_subject','J_version','J_book']
+	,url: ['test/grade.json','test/subject.json','test/version.json','test/book.json']
+	,relate: 'a=2&b=m'
+	,load1st: false
+	,defValues: [1,1,1,1]
+	,error:[0,function(els, oi, XMLHttpRequest, textStatus, errorThrown){
+		alert('不好意思，发生了错误！');
+		window.status = 'error'+','+oi+','+this.id+','+els+XMLHttpRequest+','+ textStatus+','+ errorThrown;
+		if(window.console)
+			console.log('error',els, oi, XMLHttpRequest, textStatus, errorThrown);
+	}]
+	,change:[function(els,i){
+		//数据加载前的回调
+		window.status = 'change'+','+i+','+this.id+','+els;
+		if(window.console)
+			console.log('change',this, els,i);
+    }]
+    /*,callback:function(D, els, i){
+    	//比如实现当返回数据D为[]空数组时，隐藏后面几项选择菜单
+    	window.status = 'beforeAdd'+','+this+','+i+','+this.id+','+els+','+D;
+		if(window.console)
+			console.log('beforeAdd', D, this, els, i);
+    }*/ //callback会替代ajax返回数据后的操作并且不会执行beforeAdd和afterAdd以及设置默认值
+    ,beforeAdd:function(D, els, i){
+    	//比如实现当返回数据D为[]空数组时，隐藏后面几项选择菜单
+    	window.status = 'beforeAdd'+','+this+','+i+','+this.id+','+els+','+D;
+		if(window.console)
+			console.log('beforeAdd', D, this, els, i);
+    }
+    ,afterAdd:function(D, els, i, setDef){
+    	//D是ajax返回的数据，els是前面id对应的DOM元素数组，i为当前元素在数组中的索引，setDef判断是否是默认加载后需要设置默认值，如果提供了默认值则setDef为true
+    	//比如实现当返回数据D为[]空数组时，隐藏后面几项选择菜单，还可以实现选中默认项(老师所教年级与科目都可以设置已知的默认值，但版本科目不知时可以选择第一项作为默认值)
+    	window.status = 'afterAdd'+','+this+','+i+','+this.id+','+els+','+D;
+		if(window.console)
+			console.log('afterAdd', D, this, els, i);
+    }
+    ,afterSetVal:function(D, els, v, i){
+    	//比如实现当返回数据D为[]空数组时，隐藏后面几项选择菜单，还可以实现选中默认项(老师所教年级与科目都可以设置已知的默认值，但版本科目不知时可以选择第一项作为默认值)
+    	window.status = 'afterSetVal'+','+this+','+i+','+this.id+','+els+','+v+','+D;
+		if(window.console)
+			console.log('afterSetVal', D, this, els, v, i);
+    }
+});
+</script>
+</body>
+</html>
