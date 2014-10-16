@@ -1,12 +1,14 @@
 $.extend({
+	//todo: 自动选中第一项
     'linkage':function(opts){
         var set = $.extend({
             'target':['J_grade','J_subject','J_version','J_book'], //需要做联动处理的元素id
             'url':['test/grade.php','test/subject.php','test/version.php','test/book.php'], //每项查询的url
             'defValues':[], //第一次加载完后设置的默认值
+            'selectIndex':[], //第一次加载完后设置的默认选中项
             'relate':['J_relate1','J_relate2']||'', //可以为字符串或元素id组成的数组，默认不设置时是前面每项select拼接的查询字符串
             'type':'get', //ajax请求的方式get, post
-            'load1st':true, //是否自动加载第一个，设置为false时可以直接将第一项固定下来不需要ajax请求一遍
+            'loadIndex':-1, //自动加载第几项，设置-1时无加载
             'cache':false, //是否缓存ajax
             'error':[], //ajax错误时的回调
             'change':[], //值被更改后的回调，可以是函数组成的数组可以是函数，在加载数据之前执行
@@ -15,16 +17,20 @@ $.extend({
             'afterAdd':[], //往select里添加option后的回调
             'afterSetVal':[] //js设置默认值之后的回调
         },opts||{});
-        var ajax = null, //对应联动的全局ajax
+        var undefineds,
+        	ajax = null, //对应联动的全局ajax
         	defaultOps = [], //下拉框第一选择项
+        	targets = set.target, //设置的联动元素id组
         	els = [], //联动元素集合els[i]为push进去的dom原生对象
+        	t1 = $('#'+targets[1]), //获取到第一个元素，便于后续绑定click事件
         	type = set.type, //请求方式
         	rel = set.relate, //关联元素id
         	defValues = set.defValues,
+        	selectIndex = set.selectIndex,
         	relEls = [], //存放关联元素
         	change = set.change, //当值被手动修改后的回调，可为函数组成的数组或者函数
         	cache = set.cahce,
-        	load1st = set.load1st,
+        	loadIndex = set.loadIndex,
         	error = set.error,
         	callback = set.callback,
         	beforeAdd = set.beforeAdd,
@@ -60,6 +66,7 @@ $.extend({
             		if(prev.value === '') return;
             	}else if(!prev){
             		el.length = 1;
+            		el.options[0].value = '';
             		el.options[0].text = '\u52a0\u8f7d\u4e2d...';
             	}
 				for(var i=0, il=relate.length; i<il; i++){
@@ -79,11 +86,13 @@ $.extend({
 					cache: cache,
 					error:function(XMLHttpRequest, textStatus, errorThrown){
 						el.options[0].text = defaultOps[oi];
-						var D, cerror = error[oi];
+						var cerror = error[oi];
+						//避免click单击重复加载
+						t1.data('loading', false);
 						if(cerror){
-							cerror.apply(el, [D, els, oi, XMLHttpRequest, textStatus, errorThrown]);
+							cerror.apply(el, [undefineds, els, oi, XMLHttpRequest, textStatus, errorThrown]);
 						}else if(typeof error == 'function'){
-							error.apply(el, [D, els, oi, XMLHttpRequest, textStatus, errorThrown]);
+							error.apply(el, [undefineds, els, oi, XMLHttpRequest, textStatus, errorThrown]);
 						}
 					},
 					success: function(D){
@@ -92,6 +101,8 @@ $.extend({
             			el.options[0].text = defaultOps[oi];
             			var cback = callback[oi];
             			if(D && $.isArray(D) && D.length){
+            				//避免click单击重复加载
+            				t1.data('loading', false).off('click.linkage');
             				if(cback){
 								//自定义ajax返回数据处理函数
 								cback.apply(el, [D, els, oi]);
@@ -99,7 +110,8 @@ $.extend({
 								callback.apply(el, [D, els, oi]);
 							}else{
 								//自定义数据加载完后的回调与callback的区别是它执行后还会继续往select添加option
-								var bAdd = beforeAdd[oi];
+								var bAdd = beforeAdd[oi], inValues = false, v = defValues[oi];
+								
 								if(bAdd){
 									bAdd.apply(el, [D, els, oi]);
 								}else if(typeof beforeAdd == 'function'){
@@ -112,28 +124,37 @@ $.extend({
 									* 后台就会有更大的灵活性，他们不需要考虑key名是什么，
 									* 只要按键,值对的顺序输出就行
 									*/
-									if(D[i].id === '') continue;
-									el.add((new Option(D[i].name, D[i].id)), el.options.length);
+									var di = D[i], did = di.id;
+									//console.log(did+'---------', typeof did + '---------', v+'---------', typeof v+di.name)
+									if(did === v) inValues = true;
+									if(did === '') continue;
+									el.add((new Option(di.name, did)), el.options.length);
 								}
 								//添加完option之后的回调
-								var afAdd = afterAdd[oi];
+								var afAdd = afterAdd[oi], slctIndex = selectIndex[oi];
 								if(afAdd){
 									afAdd.apply(el, [D, els, oi, setDef]);
 								}else if(typeof afterAdd == 'function'){
 									afterAdd.apply(el, [D, els, oi, setDef]);
 								}
+								//获取设置的回调函数
+								var afsetV = afterSetVal[oi];
 								if(setDef){
-									//设置默认值
-									var v = defValues[oi];
-									el.value = v;
-									console.log(el.id+'|'+v+'|')
-									loadData(++oi, true);
+									if(defValues.length){
+										if(inValues){
+											el.value = v;
+											loadData(++oi, true);
+										}
+									}else if(typeof slctIndex == 'number' && slctIndex > -1){
+										console.log('============='+slctIndex)
+										el.options[slctIndex].selected = 'selected';
+										loadData(++oi, true);
+									}
 									//设置默认值后的回调
-									var afsetV = afterSetVal[oi];
 									if(afsetV){
-										afsetV.apply(el, [D, els, v, oi-1]);
+										afsetV.apply(el, [v || slctIndex, els, oi-1, D]);
 									}else if(typeof afterSetVal == 'function'){
-										afterSetVal.apply(el, [D, els, v, oi-1]);
+										afterSetVal.apply(el, [v || slctIndex, els, oi-1, D]);
 									}
 								}
 							}
@@ -148,11 +169,23 @@ $.extend({
 					}
 				});
             };
-        $(set.target).each(function(i) {
+        $(targets).each(function(i) {
             var el = document.getElementById(this);
             els.push(el);
             defaultOps.push(el.getAttribute('title') || '\u8bf7\u9009\u62e9');
+			if(i === 1){
+				//此时是编辑状态
+				t1.on('click.linkage',function(e){
+					if(t1.data('loading')) return;
+					t1.data('loading', true);
+					loadData(i, true);
+					this.blur();
+				});
+			}
 			var $el = $('#'+this).on('change',function(e){
+				if(!i){
+					t1.off('click.linkage');
+				}
 				//查看是否有值被更改后的回调
 				var changefun = change[i];
 				if(changefun){
@@ -166,33 +199,11 @@ $.extend({
 					loadData(i+1);
 				}
 			});
-			/*i && $el.one('click',function(e){
-				if($el.data('loading')) return;
-				this.options[0].value
-				$el.data('loading', true);
-				if(i<len-1){
-					loadData(i+1, true);
-				}
-			});*/
         });
-        if(load1st){
-        	if(defValues.length>0){
-				loadData(0, true);
-        	}else
-        		loadData(0);
-        }else{
-        	if(defValues.length>0){
-        		var v = defValues[0], el = els[0];
-				el.value = v;
-				loadData(1, true);
-				//设置默认值后的回调
-				var afsetV = afterSetVal[0];
-				if(afsetV){
-					afsetV.apply(el, [undefined, els, v, 0]);
-				}else if(typeof afterSetVal == 'function'){
-					afterSetVal.apply(el, [undefined, els, v, 0]);
-				}
-        	}
+        if(defValues.length>0 || selectIndex.length>0){
+        	if(loadIndex > -1) loadData(loadIndex, true);
+        }else if(loadIndex > -1){
+        	loadData(loadIndex);
         }
     }
 });

@@ -37,22 +37,23 @@
 <script>
 $.linkage({
 	target: ['J_grade','J_subject','J_version','J_book']
-	,url: ['test/grade.json','test/subject.json','test/version.json','test/book.json']
+	,url: ['test/grade.json','test/subject.php','test/version.json?time=12353','test/book.json?time=2423']
 	,relate: 'a=2&b=m'
-	,load1st: false
-	,defValues: [1,1,1,1]
+	//,loadIndex: 0 //编辑模式下可以不设置此项，只查询出已经设置的值
+	//,defValues: [1,1,1,1]
+	,selectIndex: [1,1,2,1]
 	,error:[0,function(els, oi, XMLHttpRequest, textStatus, errorThrown){
 		alert('不好意思，发生了错误！');
 		window.status = 'error'+','+oi+','+this.id+','+els+XMLHttpRequest+','+ textStatus+','+ errorThrown;
 		if(window.console)
 			console.log('error',els, oi, XMLHttpRequest, textStatus, errorThrown);
 	}]
-	,change:[function(els,i){
+	,change:function(els,i){
 		//数据加载前的回调
 		window.status = 'change'+','+i+','+this.id+','+els;
 		if(window.console)
 			console.log('change',this, els,i);
-    }]
+    }
     /*,callback:function(D, els, i){
     	//比如实现当返回数据D为[]空数组时，隐藏后面几项选择菜单
     	window.status = 'beforeAdd'+','+this+','+i+','+this.id+','+els+','+D;
