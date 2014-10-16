@@ -81,5 +81,31 @@ $.linkage({
     }
 });
 </script>
+
+
+<div class="selectwrap">
+	<select name="test">
+		<option value="1">123123123isdhakjhfjhadlsjfhldkjsahfljkdsahfljkdsalfjkhsdljkfhasdjkhk</option>
+		<option value="2">中文3123123isdfhakjhfjhadlsjfhldkjssljkdsahfljkdsalfjkhsdljkfhasdjkhk</option>
+	</select>
+</div>
+<style type="text/css">
+.selectwrap{width:100px;height:25px;background:#f00;padding:3px;float:left;}
+.selectwrap select{width:90px;
+*unicode-bidi:expression(function(e){
+	var s = e.style, w = e.clientWidth;
+	s.unicodeBidi='normal';
+	e.attachEvent('onclick', function(){
+		e.parentNode.style.position='relative';s.width='auto';s.position='absolute';
+	});
+	e.attachEvent('onblur', function(){
+		e.parentNode.style.position='static';s.width=w;s.position='static';
+	});
+	e.attachEvent('onchange', function(){
+		e.blur();
+	});
+}(this));
+}
+</style>
 </body>
 </html>

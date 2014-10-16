@@ -146,7 +146,7 @@ $.extend({
 											loadData(++oi, true);
 										}
 									}else if(typeof slctIndex == 'number' && slctIndex > -1){
-										console.log('============='+slctIndex)
+										//console.log('============='+slctIndex)
 										el.options[slctIndex].selected = 'selected';
 										loadData(++oi, true);
 									}
