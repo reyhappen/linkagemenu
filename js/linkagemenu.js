@@ -1,5 +1,4 @@
 $.extend({
-	//todo: 自动选中第一项
     'linkage':function(opts){
         var set = $.extend({
             'target':['J_grade','J_subject','J_version','J_book'], //需要做联动处理的元素id
