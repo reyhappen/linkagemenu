@@ -39,8 +39,9 @@ $.extend({
         	relEls.push(rel);
         }else{
         	for(var i=0, il=rel.length; i<il; i++){
+        		var r = rel[i];
 	        	//关联元素数组压入元素
-	        	relEls.push(document.getElementById(rel[i]));
+	        	relEls.push(r.nodeType == 1 ? r : document.getElementById(r));
 	        }
         }
         var len = set.target.length,
@@ -72,7 +73,7 @@ $.extend({
 					var _el = relate[i];
 					if(_el.name)
 						//若该项为元素节点
-						qsString.push(_el.name +'='+ _el.value);
+						qsString.push(encodeURIComponent(_el.name) +'='+ encodeURIComponent(_el.value));
 					else
 						//字符串时
 						qsString.push(_el);
@@ -145,7 +146,7 @@ $.extend({
 											loadData(++oi, true);
 										}
 									}else if(typeof slctIndex == 'number' && slctIndex > -1){
-										//console.log('============='+slctIndex)
+										//el.selectedIndex = slctIndex; //不知为何不可行了
 										el.options[slctIndex].selected = 'selected';
 										loadData(++oi, true);
 									}
@@ -182,6 +183,8 @@ $.extend({
 				});
 			}
 			var $el = $('#'+this).on('change',function(e){
+				//以下判断专为IE6准备
+				if(!window.XMLHttpRequest && this.selectIndex===parseInt(this.getAttribute("unselectIndex"))) return;
 				if(!i){
 					t1.off('click.linkage');
 				}

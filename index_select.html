@@ -6,30 +6,38 @@
 <script type="text/javascript" src="js/jquery.min.js"></script>
 </head>
 <body>
-<div style="padding:20px;">
-    <span>
+<style type="text/css">
+select{margin:0;padding:0;}
+.clear{zoom:1;}
+.clear:after{display:table;content:'';clear:both;}
+.field{margin-right:10px;}
+.field, .field span, .field div{display:inline;float:left;}
+.field span{margin-right:10px;}
+</style>
+<div style="padding:20px;" class="clear">
+    <div class="field">
         <span class="selected">学段</span>
-        <select name="grade" id="J_grade" title="学段">
+        <div class="selectwrap"><select class="hasunopts" name="grade" id="J_grade" title="学段">
             <option value="1">小学</option>
             <option value="2" disabled="disabled">初中</option>
             <option value="3">高中</option>
-        </select>
-    </span>
-    <span>
+        </select></div>
+    </div>
+    <div class="field">
         <span class="selected">科目</span>
-        <select name="subject" id="J_subject" title="科目"><option value="1">数学</option></select>
-    </span>
+        <div class="selectwrap"><select name="subject" id="J_subject" title="科目"><option value="1">数学</option></select></div>
+    </div>
 </div>
-<div style="padding:20px;">
+<div style="padding:20px;" class="clear">
     <!--select默认宽120，wide宽330-->
-    <span>
+    <div class="field">
         <span class="selected">版本</span>
-        <select name="version" id="J_version" title="版本"><option value="1">人教版</option></select>
-    </span>
-    <span>
+        <div class="selectwrap"><select name="version" id="J_version" title="版本"><option value="1">人教版</option></select></div>
+    </div>
+    <div class="field">
         <span class="selected">课本</span>
-        <select name="book" id="J_book" title="课本"><option value="1">上册</option></select>
-    </span>
+        <div class="selectwrap"><select name="book" id="J_book" title="课本"><option value="1">上册</option></select></div>
+    </div>
     <input id="J_relate1" name="rel1" type="text" value="123" />
     <input id="J_relate2" name="rel2" type="text" value="123" />
 </div>
@@ -83,7 +91,7 @@ $.linkage({
 </script>
 
 
-<div class="selectwrap">
+<div class="clear"><div class="selectwrap">
 	<select name="test">
 		<option value="1">123123123isdhakjhfjhadlsjfhldkjsahfljkdsahfljkdsalfjkhsdljkfhasdjkhk</option>
 		<option value="2">中文3123123isdfhakjhfjhadlsjfhldkjssljkdsahfljkdsalfjkhsdljkfhasdjkhk</option>
@@ -91,27 +99,68 @@ $.linkage({
 </div>
 <div class="selectwrap">
 	<select name="test">
+		<option value="1">内容1</option>
+		<option value="2">内容2</option>
+		<option value="3">内容3</option>
+		<option value="4">内容4</option>
+		<option value="5">内容5</option>
+		<option value="6">内容6</option>
+		<option value="7">内容7</option>
+		<option value="8">内容8</option>
+		<option value="9">内容9</option>
+		<option value="10">内容10</option>
+		<option value="11">内容11</option>
+		<option value="12">内容12</option>
+		<option value="13">内容13</option>
+		<option value="14">内容14</option>
+		<option value="15">内容15</option>
+		<option value="16">内容16</option>
+		<option value="17">内容17</option>
+		<option value="18">内容18</option>
+		<option value="19">内容19</option>
+		<option value="20">内容20</option>
+		<option value="21">123123123isdhakjjhadlsjfhldkjsahfljkdsahfljkdsalfjkhsdljkfhasdjkhk</option>
+		<option value="2">中文3123123isdfhakjhfjhadlsjfhldkssljkdsahfljkdsalfjkhsdljkfhasdjkhk</option>
+	</select>
+</div></div>
+<div class="clear"><div class="selectwrap">
+	<select name="test">
 		<option value="1">123123123isdhakjhfjhadlsjfhldkjsahfljkdsahfljkdsalfjkhsdljkfhasdjkhk</option>
 		<option value="2">中文3123123isdfhakjhfjhadlsjfhldkjssljkdsahfljkdsalfjkhsdljkfhasdjkhk</option>
 	</select>
-</div>
+</div></div>
+<iframe src="javascript:;" style="width:0;height:22px;filter:alpha(opacity=0);position:absolute;left:0;top:0;" frameborder="0"></iframe>
 <style type="text/css">
 .selectwrap{width:100px;height:25px;background:#f00;padding:3px;float:left;}
+.selectwrap iframe{/*for ie6*/display:none;position:absolute;left:3px;top:3px;/*top&left set as parent's padding*/z-index:-1;height:22px;filter:alpha(opacity=0);}
 .selectwrap select{width:90px;
 *unicode-bidi:expression(function(e){
-	var s = e.style, w = e.offsetWidth;
+	var s = e.style, w = e.currentStyle.width,p=e.parentNode,m=!window.XMLHttpRequest,i,c;
 	s.unicodeBidi='normal';
+	if(m){
+		p.insertAdjacentHTML('afterBegin','<iframe src="javascript:;" tabindex="-1" frameborder="0"></iframe>');
+		i=p.getElementsByTagName('iframe')[0];
+	}
 	e.attachEvent('onclick', function(){
-		e.parentNode.style.position='relative';s.width='auto';s.position='absolute';
+		p.style.position='relative';s.position='absolute';
+		s.width='auto';
+		if(m){
+			i.style.display='block';
+			i.style.width=e.offsetWidth;
+		} 
 	});
 	e.attachEvent('onblur', function(){
-		e.parentNode.style.position='static';s.width=w;s.position='static';
+		p.style.position='static';s.width=w;s.position='static';
+		m&&(i.style.display='none');
 	});
 	e.attachEvent('onchange', function(){
 		e.blur();
 	});
 }(this));
 }
+
+/*带有disabled options的select*/
+select.hasunopts{_unicode-bidi:expression(function(e){e.style.unicodeBidi='normal';if(!window.XMLHttpRequest){e.setAttribute("selectIndex",e.selectedIndex);e.attachEvent("onfocusin",function(){var s=e.options;for(var i=0,l=s.length;i<l;i++){if(s[i].disabled){s[i].style.color='graytext';}}});e.attachEvent("onchange",function(){if(e.options[e.selectedIndex].disabled){e.selectedIndex=e.getAttribute("selectIndex");e.setAttribute("unselectIndex",e.selectedIndex)}e.setAttribute("selectIndex",e.selectedIndex);});}}(this));}
 </style>
 </body>
 </html>
