@@ -182,7 +182,7 @@ $.extend({
 					this.blur();
 				});
 			}
-			var $el = $('#'+this).on('change',function(e){
+			var $el = $('#'+this).on('change.linkagemenu',function(e){
 				//以下判断专为IE6准备
 				if(!window.XMLHttpRequest && this.selectIndex===parseInt(this.getAttribute("unselectIndex"))) return;
 				if(!i){
